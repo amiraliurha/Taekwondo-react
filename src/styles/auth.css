@@ -1,0 +1,377 @@
+/* --- تنظیمات پایه و متغیرها --- */
+:root {
+  --primary-color: #d92a2a;
+  --secondary-color: #f4f4f4;
+  --dark-color: #1a1a1a;
+  --text-light: #ffffff;
+  --font-vazir: 'Vazirmatn', sans-serif;
+  --font-rubik: 'Rubik', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-vazir);
+  direction: rtl;
+  background-color: #ffffff;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* انیمیشن‌های اختصاصی برای فرم */
+@keyframes formAppear {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes inputFocus {
+  from {
+    box-shadow: 0 0 0 0 rgba(217, 42, 42, 0.3);
+  }
+  to {
+    box-shadow: 0 0 0 10px rgba(217, 42, 42, 0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* ---------------- Auth Stage (فرم ورود) ---------------- */
+.main-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 60px);
+  padding-top: 20px;
+  animation: fadeIn 1s ease-out;
+}
+
+.auth-stage {
+  margin-top: 80px;
+  animation: slideInFromRight 1s ease-out;
+}
+
+.auth-card {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 50px;
+  border-radius: 25px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 450px;
+  transition: all 0.5s ease-in-out;
+  border-top: 5px solid var(--primary-color);
+  position: relative;
+  overflow: hidden;
+  animation: formAppear 1s ease-out;
+}
+
+.auth-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(90deg, #d92a2a, #ff6b6b, #d92a2a);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+}
+
+.auth-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+}
+
+.auth-title {
+  font-family: var(--font-rubik);
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+  color: var(--dark-color);
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.auth-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), transparent);
+  border-radius: 2px;
+}
+
+.auth-title span {
+  color: var(--primary-color);
+  font-weight: 900;
+  background: linear-gradient(45deg, #d92a2a, #ff6b6b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textGlow 2s infinite alternate;
+}
+
+.auth-form .input-group {
+  margin-bottom: 25px;
+  animation: slideInFromLeft 0.8s ease-out;
+  animation-fill-mode: both;
+}
+
+.auth-form .input-group:nth-child(1) {
+  animation-delay: 0.2s;
+}
+
+.auth-form .input-group:nth-child(2) {
+  animation-delay: 0.4s;
+}
+
+.auth-form label {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #555;
+  transition: color 0.3s ease;
+}
+
+.auth-form label:hover {
+  color: var(--primary-color);
+}
+
+.auth-form input {
+  width: 100%;
+  padding: 16px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  font-family: var(--font-vazir);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.auth-form input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(217, 42, 42, 0.2), 0 5px 15px rgba(0, 0, 0, 0.1);
+  outline: none;
+  animation: inputFocus 0.5s ease-out;
+  transform: translateY(-2px);
+}
+
+.auth-form input::placeholder {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.btn-login {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(45deg, var(--primary-color), #e84c4c);
+  color: var(--text-light);
+  border: none;
+  border-radius: 15px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 25px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  animation: fadeIn 1s ease-out 0.6s both;
+}
+
+.btn-login::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #e84c4c, var(--primary-color));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+}
+
+.btn-login:hover::before {
+  opacity: 1;
+}
+
+.btn-login:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 15px 30px rgba(217, 42, 42, 0.4);
+  letter-spacing: 1px;
+}
+
+.btn-login:active {
+  transform: translateY(-2px) scale(1.01);
+}
+
+.back-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: transparent;
+  border: 2px solid #ddd;
+  color: #666;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-size: 1rem;
+  font-weight: 600;
+  animation: fadeIn 1s ease-out 0.8s both;
+}
+
+.back-btn:hover {
+  background-color: #f8f8f8;
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* استایل برای زمانی که یک فیلد ورودی خطا دارد */
+.input-error {
+  border: 2px solid #ff4444 !important;
+  background-color: #fff0f0;
+  animation: shake 0.5s ease-in-out;
+}
+
+/* استایل پیام خطا */
+.error-message {
+  color: #ff4444;
+  background-color: #fff6f6;
+  border: 1px solid #ffcccc;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  text-align: center;
+  animation: slideInFromLeft 0.5s ease-out;
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.1);
+}
+
+/* ---------------- Responsive Adjustments ---------------- */
+@media (max-width: 768px) {
+  .auth-card {
+    max-width: 90%;
+    padding: 35px 25px;
+    margin: 20px;
+  }
+  
+  .auth-title {
+    font-size: 1.7rem;
+  }
+
+  .auth-form input, .btn-login, .back-btn {
+    font-size: 1rem;
+  }
+  
+  .auth-stage {
+    margin-top: 60px;
+  }
+}
+
+/* Background with animations */
+.hero-background-student {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -5;
+  overflow: hidden;
+  animation: fadeIn 1.5s ease-out;
+}
+
+.hero-background-student img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4) saturate(1.2);
+  animation: float 8s ease-in-out infinite;
+}
+
+.hero-background-coach {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -5;
+  overflow: hidden;
+  animation: fadeIn 1.5s ease-out;
+}
+
+.hero-background-coach img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.4) contrast(1.1);
+  animation: float 10s ease-in-out infinite;
+}
+
+.hero-background-admin {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -5;
+  overflow: hidden;
+  animation: fadeIn 1.5s ease-out;
+}
+
+.hero-background-admin img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.35) hue-rotate(200deg) contrast(1);
+  animation: float 12s ease-in-out infinite;
+}
+
+/* استایل‌های عمومی */
+.app {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Loading animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  margin-left: 10px;
+}

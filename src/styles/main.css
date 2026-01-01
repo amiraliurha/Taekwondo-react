@@ -1,0 +1,294 @@
+/* تنظیمات عمومی و فونت‌ها */
+:root {
+  --primary-color: #d92a2a;
+  --secondary-color: #f4f4f4;
+  --dark-color: #1a1a1a;
+  --text-light: #ffffff;
+  --font-vazir: 'Vazirmatn', sans-serif;
+  --font-rubik: 'Rubik', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-vazir);
+  direction: rtl;
+  background-color: var(--secondary-color);
+  color: var(--dark-color);
+  overflow-x: hidden;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 1s ease-out;
+}
+
+/* انیمیشن‌ها */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+/* Hero Section با انیمیشن */
+.hero {
+  position: relative;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--text-light);
+  text-align: center;
+  animation: fadeIn 1.5s ease-out;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-background::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, 
+    rgba(217, 42, 42, 0.3) 0%,
+    rgba(26, 26, 26, 0.6) 100%);
+  z-index: 2;
+  animation: shimmer 3s infinite linear;
+  background-size: 200% auto;
+}
+
+.hero-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7) saturate(1.2);
+  animation: float 6s ease-in-out infinite;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  padding: 50px 30px;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 2s ease-out;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.hero-content h1 {
+  font-family: var(--font-rubik);
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  animation: slideInFromRight 1s ease-out 0.5s both;
+  background: linear-gradient(45deg, #fff, #ffcccc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  margin-bottom: 50px;
+  font-weight: 300;
+  animation: slideInFromLeft 1s ease-out 0.8s both;
+  opacity: 0.9;
+}
+
+/* Buttons با انیمیشن */
+.buttons-group {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: fadeIn 1s ease-out 1.2s both;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 18px 35px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  border: 2px solid transparent;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transform: translateX(0);
+}
+
+.btn:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* استایل دکمه شاگرد */
+.btn-student {
+  background: linear-gradient(45deg, var(--primary-color), #e84c4c);
+  color: var(--text-light);
+}
+
+.btn-student:hover {
+  box-shadow: 0 15px 30px rgba(217, 42, 42, 0.5);
+}
+
+/* استایل دکمه مربی */
+.btn-coach {
+  background: linear-gradient(45deg, var(--dark-color), #3a3a3a);
+  color: var(--text-light);
+}
+
+.btn-coach:hover {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* استایل دکمه ادمین */
+.btn-admin {
+  background: linear-gradient(45deg, var(--text-light), #f4f4f4);
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-admin:hover {
+  box-shadow: 0 15px 30px rgba(217, 42, 42, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2rem;
+    animation: fadeIn 1s ease-out;
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+    animation: fadeIn 1s ease-out 0.5s both;
+  }
+
+  .buttons-group {
+    flex-direction: column;
+    gap: 20px;
+    animation: fadeIn 1s ease-out 0.8s both;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 16px 30px;
+  }
+  
+  .hero-content {
+    padding: 30px 20px;
+    margin: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+  
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
